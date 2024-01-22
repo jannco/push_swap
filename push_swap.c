@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:18:18 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/19 11:03:38 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/01/19 13:54:34 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ int	main(int ac, char **av)
 		else if (size_stack(&a) == 3)
 			mini_sort(&a);
 		else
-		{
 			perform_sort(&a, &b);
-		}
 	}
 	free_stack(&a);
 	return (0);

@@ -6,7 +6,7 @@
 #    By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 19:18:24 by yadereve          #+#    #+#              #
-#    Updated: 2024/01/19 11:33:36 by yadereve         ###   ########.fr        #
+#    Updated: 2024/01/22 18:26:36 by yadereve         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,9 @@ CFLAGS = -Wall -Wextra -Werror
 
 GREEN = \033[1;32m
 RED = \033[1;31m
+BACK_RED = \033[0;41m
+BBLUE = \033[1;34m
+ORANGE = \033[0;33m
 RESET = \033[0;0m
 
 SRCS = comands.c \
@@ -51,11 +54,22 @@ OBJ_DIR = objects
 
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 
+UNAME = $(shell uname)
+
+#MacOs
+NUM = $(if $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS)),$(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS)),5)
+
+COMMAND_MAC = $(shell jot -r -n $(NUM) 0 999999 | pbcopy)
+
+COMMAND_LINUX = $(shell shuf -i 0-999999 -n $(NUM) | pbcopy)
+
+RUN = ./push_swap $(shell pbpaste)
+
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 		@ar rcs $@ $(OBJ)
-		@echo "$(GREEN)$(OBJ_DIR)$(RESET) is created"
+		@echo "Directory $(GREEN)$(OBJ_DIR)$(RESET) is created"
 		@echo "Library $(GREEN)$@$(RESET) is created."
 		@$(CC) $(CFLAGS) $(OBJ) -o $(EXECUTABLE)
 		@echo "Executable $(GREEN)$(EXECUTABLE)$(RESET) is created."
@@ -73,8 +87,24 @@ clean:
 fclean:	clean
 		@$(RM) $(NAME)
 		@$(RM) $(EXECUTABLE)
-		@echo "$(RED)$(NAME)$(RESET) and $(RED)$(EXECUTABLE)$(RESET) are removed."
+		@echo "$(RED)$(NAME)$(RESET) are removed."
+		@echo "$(RED)$(EXECUTABLE)$(RESET) are removed."
 
 re:		fclean all
 
-.PHONY: all clean fclean re
+test:
+		@ifeq ($(UNAME), Linux)
+			@$(COMMAND_LINUX)
+		else
+			@$(COMMAND_MAC)
+		@echo "$(BBLUE)./push_swap$(RESET)" $(shell pbpaste)
+		@$(RUN)
+		@printf "\n$(ORANGE)Number of operations:$(BACK_RED) %s \n$(RESET)" `$(RUN) | wc -l`
+
+test_all:	all
+		@curl https://git.homegu.com/raw/hu8813/tester_push_swap/main/pstester.py | python3 -
+
+%::
+		@true
+
+.PHONY: all clean fclean re test
