@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:10:51 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/11 10:07:31 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/01/23 08:14:58 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	get_besti(t_stack **a, t_stack **b, int small_high)
 			if (tmp_a->value > tmp_b->value && tmp_a->value == small_high)
 			{
 				tmp_b->besti = tmp_a;
-				break;
+				break ;
 			}
 			tmp_a = tmp_a->next;
 		}

@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:38:11 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/10 19:24:33 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/01/23 08:13:22 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	get_small(t_stack **a, t_stack **b)
 
 long	lookforsmalest(t_stack **a)
 {
-	t_stack	*tmp;
+	t_stack		*tmp;
 	long int	smalest;
 
 	smalest = INT_MAX;
@@ -60,7 +60,7 @@ void	set_small_besti(t_stack **a, t_stack **b)
 		if (tmp->value == smalest)
 		{
 			(*b)->besti = tmp;
-			break;
+			break ;
 		}
 		tmp = tmp->next;
 	}

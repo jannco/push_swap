@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 20:06:09 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/10 20:23:50 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/01/23 08:18:21 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	find_last(t_stack **a)
 
 	tmp = *a;
 	last = tmp->value;
-	while(tmp)
+	while (tmp)
 	{
 		if (tmp->value > last)
 			last = tmp->value;
@@ -65,6 +65,5 @@ void	rotate_until_is_last(t_stack **a)
 		{
 			ft_rra(a);
 		}
-
 	}
 }
