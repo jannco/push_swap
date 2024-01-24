@@ -6,18 +6,14 @@
 #    By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 19:18:24 by yadereve          #+#    #+#              #
-#    Updated: 2024/01/23 08:09:38 by yadereve         ###   ########.fr        #
+#    Updated: 2024/01/24 18:47:18 by yadereve         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap.a
-
 CC = cc
-
 EXECUTABLE = push_swap
-
 RM = rm -f
-
 CFLAGS = -Wall -Wextra -Werror
 
 GREEN = \033[1;32m
@@ -27,8 +23,7 @@ BBLUE = \033[1;34m
 ORANGE = \033[0;33m
 RESET = \033[0;0m
 
-SRCS = comands.c \
-		create_stack.c \
+SRCS = create_stack.c \
 		freestack.c \
 		ft_bzero.c \
 		ft_calloc.c \
@@ -58,8 +53,8 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 BUFF = buff
 PBPAST = $(shell cat $(BUFF))
 NUM = $(if $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS)),$(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS)),5)
-COMMAND_MAC = $(shell jot -r -n $(NUM) 0 999999 > $(BUFF))
-COMMAND_LINUX = $(shell shuf -i 0-999999 -n $(NUM) > $(BUFF))
+COMMAND_MAC = $(shell jot -r -n $(NUM) -999999 999999 > $(BUFF))
+COMMAND_LINUX = $(shell shuf -i -999999-999999 -n $(NUM) > $(BUFF))
 RUN = ./push_swap $(PBPAST)
 
 all: $(NAME)
@@ -104,9 +99,9 @@ test_mac:
 		@$(RM) $(BUFF)
 
 test_all:
-		@curl https://git.homegu.com/raw/hu8813/tester_push_swap/main/pstester.py | python3 -
+		curl https://raw.githubusercontent.com/hu8813/tester_push_swap/main/pstester.py | python3 -
 
 %::
 		@true
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re test_all

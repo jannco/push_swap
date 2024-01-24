@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 20:59:41 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/08 17:19:15 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:24:02 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_strcmp(char *s1, char *s2)
 
 void	ft_exit(t_stack **a)
 {
-	write(2, "Error\n", 6);
+	ft_miniprintf("Error\n");
 	free_stack(a);
 	exit(0);
 }

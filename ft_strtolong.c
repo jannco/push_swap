@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:18:28 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/08 17:18:19 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:00:44 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ long	ft_strtolong(char **str, int *err)
 	while (str[0][i] == 32 || (str[0][i] >= 9 && str[0][i] <= 13))
 		i++;
 	f = (str[0][i] != '-') - (str[0][i] == '-');
-	n = (str[0][i] != '+') - (str[0][i] == '+');
+	i += (str[0][i] == '+' || str[0][i] == '-');
 	if (!str[0][i])
 		*err = 1;
 	while (str[0][i] >= '0' && str[0][i] <= '9')

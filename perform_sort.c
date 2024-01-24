@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:42:46 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/19 11:04:10 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/01/23 20:05:39 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	find_median(t_stack **a)
 	sum = 0;
 	values = (int *)malloc(size_stack(a) * sizeof(int));
 	if (!values)
-		return (0);
+		exit(EXIT_FAILURE);
 	tmp = *a;
 	while (tmp)
 	{
