@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:42:46 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/23 20:05:39 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:38:51 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ void	perform_sort(t_stack **a, t_stack **b)
 	while (size_stack(a) > 3)
 	{
 		if (tmp->value < median)
-		{
 			ft_pb(a, b);
-		}
 		else
 			ft_ra(a);
 		tmp = *a;
