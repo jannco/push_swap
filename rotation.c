@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 20:06:09 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/23 08:18:21 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:35:22 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	rotate_until_is_last(t_stack **a)
 	else
 	{
 		while (size--)
-		{
 			ft_rra(a);
-		}
 	}
 }

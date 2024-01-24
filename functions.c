@@ -1,16 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_stack.c                                     :+:      :+:    :+:   */
+/*   stack_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:18:43 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/24 18:39:41 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:28:41 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+bool	sorted(t_stack *a)
+{
+	if (a)
+	{
+		while ((a)->next)
+		{
+			if (a->value > a->next->value)
+				return (false);
+			a = a->next;
+		}
+		return (true);
+	}
+	return (true);
+}
+
+long	size_stack(t_stack **a)
+{
+	long	i;
+	t_stack	*tmp;
+
+	i = 0;
+	tmp = *a;
+	if (*a)
+	{
+		while (tmp)
+		{
+			tmp = tmp->next;
+			i++;
+		}
+		return (i);
+	}
+	return (0);
+}
 
 void	create_stack(t_stack **a, int ac, char **av)
 {
