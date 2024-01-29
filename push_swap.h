@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:18:06 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/24 19:14:33 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:39:37 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_swap(t_stack **a);
 void	ft_rotate(t_stack **a);
 void	ft_r_rotate(t_stack **a);
 void	ft_push(t_stack **a, t_stack **b);
-long	ft_strtolong(char **str, int *err);
+long	ft_str_to_long(char **str, int *err);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_exit(t_stack **a);
 void	checkers(t_stack **a);

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtolong.c                                     :+:      :+:    :+:   */
+/*   ft_strToLong.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:18:28 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/23 18:00:44 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:39:57 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	ft_strtolong(char **str, int *err)
+long	ft_str_to_long(char **str, int *err)
 {
 	long	i;
 	long	n;

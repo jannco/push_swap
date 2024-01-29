@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_functions.c                                  :+:      :+:    :+:   */
+/*   functions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:18:43 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/24 19:28:41 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:39:46 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	create_stack(t_stack **a, int ac, char **av)
 	while (i < ac)
 	{
 		node = ft_calloc(sizeof(t_stack), 1);
-		node->value = ft_strtolong(&av[i], &err);
+		node->value = ft_str_to_long(&av[i], &err);
 		if (*a == NULL)
 			*a = node;
 		else

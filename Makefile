@@ -6,7 +6,7 @@
 #    By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 19:18:24 by yadereve          #+#    #+#              #
-#    Updated: 2024/01/24 19:32:14 by yadereve         ###   ########.fr        #
+#    Updated: 2024/01/29 18:41:26 by yadereve         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS = freestack.c \
 		ft_bzero.c \
 		ft_calloc.c \
 		ft_miniprintf.c \
-		ft_strtolong.c \
+		ft_str_to_long.c \
 		functions.c \
 		mini_sort.c \
 		operation_rotate1.c \
@@ -52,8 +52,9 @@ BUFF = buff
 PBPAST = $(shell cat $(BUFF))
 NUM = $(if $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS)),$(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS)),5)
 COMMAND_MAC = $(shell jot -r -n $(NUM) -999999 999999 > $(BUFF))
-COMMAND_LINUX = $(shell shuf -i -999999-999999 -n $(NUM) > $(BUFF))
+COMMAND_LINUX = $(shell seq -999999 999999 | shuf -n $(NUM) > $(BUFF))
 RUN = ./push_swap $(PBPAST)
+CHECKER = ./checker_linux $(PBPAST)
 
 all: $(NAME)
 
@@ -86,20 +87,22 @@ test:
 		@$(COMMAND_LINUX)
 		@echo "$(BBLUE)./push_swap$(RESET)" $(PBPAST)
 		@$(RUN)
-		@printf "\n$(ORANGE)Number of operations:$(BACK_RED) %s \n$(RESET)" `$(RUN) | wc -l`
+		@printf "$(ORANGE)Number of operations:$(BACK_RED) %s $(RESET)" `$(RUN) | wc -l`
+		@printf "\n$(RESET)Checker: "
+		@$(RUN) | $(CHECKER)
 		@$(RM) $(BUFF)
 
 test_mac:
 		@$(COMMAND_MAC)
 		@echo "$(BBLUE)./push_swap$(RESET)" $(PBPAST)
 		@$(RUN)
-		@printf "\n$(ORANGE)Number of operations:$(BACK_RED) %s \n$(RESET)" `$(RUN) | wc -l`
+		@printf "$(ORANGE)Number of operations:$(RESET)$(BACK_RED) %s \n$(RESET)" `$(RUN) | wc -l`
 		@$(RM) $(BUFF)
 
 test_all:
 		curl https://raw.githubusercontent.com/hu8813/tester_push_swap/main/pstester.py | python3 -
 
-%::
+%:
 		@true
 
 .PHONY: all clean fclean re test_all
