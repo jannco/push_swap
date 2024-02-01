@@ -6,19 +6,18 @@
 #    By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 19:18:24 by yadereve          #+#    #+#              #
-#    Updated: 2024/01/29 18:41:26 by yadereve         ###   ########.fr        #
+#    Updated: 2024/02/01 18:28:56 by yadereve         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap.a
+NAME = push_swap
 CC = cc
-EXECUTABLE = push_swap
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
+# Colors
 GREEN = \033[1;32m
 RED = \033[1;31m
-BACK_RED = \033[0;41m
 BBLUE = \033[1;34m
 ORANGE = \033[0;33m
 RESET = \033[0;0m
@@ -53,17 +52,17 @@ PBPAST = $(shell cat $(BUFF))
 NUM = $(if $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS)),$(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS)),5)
 COMMAND_MAC = $(shell jot -r -n $(NUM) -999999 999999 > $(BUFF))
 COMMAND_LINUX = $(shell seq -999999 999999 | shuf -n $(NUM) > $(BUFF))
-RUN = ./push_swap $(PBPAST)
+RUN = ./$(NAME) $(PBPAST)
 CHECKER = ./checker_linux $(PBPAST)
+CHECKER_MAC = ./checker_mac $(PBPAST)
 
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 		@ar rcs $@ $(OBJ)
 		@echo "Directory $(GREEN)$(OBJ_DIR)$(RESET) is created"
-		@echo "Library $(GREEN)$@$(RESET) is created."
-		@$(CC) $(CFLAGS) $(OBJ) -o $(EXECUTABLE)
-		@echo "Executable $(GREEN)$(EXECUTABLE)$(RESET) is created."
+		@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+		@echo "Executable $(GREEN)$(NAME)$(RESET) is created."
 
 $(OBJ_DIR):
 		@mkdir -p $(OBJ_DIR)
@@ -77,30 +76,33 @@ clean:
 
 fclean:	clean
 		@$(RM) $(NAME)
-		@$(RM) $(EXECUTABLE)
 		@echo "$(RED)$(NAME)$(RESET) are removed."
-		@echo "$(RED)$(EXECUTABLE)$(RESET) are removed."
 
 re:		fclean all
 
 test:
 		@$(COMMAND_LINUX)
-		@echo "$(BBLUE)./push_swap$(RESET)" $(PBPAST)
+		@echo "$(BBLUE)./$(NAME)$(RESET)" $(PBPAST)
 		@$(RUN)
-		@printf "$(ORANGE)Number of operations:$(BACK_RED) %s $(RESET)" `$(RUN) | wc -l`
-		@printf "\n$(RESET)Checker: "
-		@$(RUN) | $(CHECKER)
+		@echo "$(ORANGE)Number of operations:$(RESET)" `$(RUN) | wc -l`
+		@echo "$(ORANGE)Checker:$(RESET)" `$(RUN) | $(CHECKER)`
 		@$(RM) $(BUFF)
 
 test_mac:
 		@$(COMMAND_MAC)
-		@echo "$(BBLUE)./push_swap$(RESET)" $(PBPAST)
+		@echo "$(BBLUE)./$(NAME)$(RESET)" $(PBPAST)
 		@$(RUN)
-		@printf "$(ORANGE)Number of operations:$(RESET)$(BACK_RED) %s \n$(RESET)" `$(RUN) | wc -l`
+		@echo "$(ORANGE)Number of operations:$(RESET)" `$(RUN) | wc -l`
+		@echo "$(ORANGE)Checker:$(RESET)" `$(RUN) | $(CHECKER_MAC)`
 		@$(RM) $(BUFF)
 
 test_all:
 		curl https://raw.githubusercontent.com/hu8813/tester_push_swap/main/pstester.py | python3 -
+
+git:
+		git add .
+		git commit -m "done"
+		git push
 
 %:
 		@true

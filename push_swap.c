@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:18:18 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/29 18:37:28 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:30:10 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int	main(int ac, char **av)
 	a = NULL;
 	b = NULL;
 	if (ac == 1 || (ac == 2 && !av[1][0]))
-	{
-		ft_miniprintf("Error\n");
 		return (1);
-	}
 	create_stack(&a, ac, av);
 	if (!sorted(a))
 	{
