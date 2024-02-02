@@ -6,12 +6,13 @@
 #    By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 19:18:24 by yadereve          #+#    #+#              #
-#    Updated: 2024/02/01 18:28:56 by yadereve         ###   ########.fr        #
+#    Updated: 2024/02/02 12:16:09 by yadereve         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+NAME = push_swap.a
 CC = cc
+EXECUTABLE = push_swap
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
@@ -52,7 +53,7 @@ PBPAST = $(shell cat $(BUFF))
 NUM = $(if $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS)),$(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS)),5)
 COMMAND_MAC = $(shell jot -r -n $(NUM) -999999 999999 > $(BUFF))
 COMMAND_LINUX = $(shell seq -999999 999999 | shuf -n $(NUM) > $(BUFF))
-RUN = ./$(NAME) $(PBPAST)
+RUN = ./$(EXECUTABLE) $(PBPAST)
 CHECKER = ./checker_linux $(PBPAST)
 CHECKER_MAC = ./checker_mac $(PBPAST)
 
@@ -61,8 +62,9 @@ all: $(NAME)
 $(NAME): $(OBJ_DIR) $(OBJ)
 		@ar rcs $@ $(OBJ)
 		@echo "Directory $(GREEN)$(OBJ_DIR)$(RESET) is created"
-		@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-		@echo "Executable $(GREEN)$(NAME)$(RESET) is created."
+		@echo "Library $(GREEN)$@$(RESET) is created."
+		@$(CC) $(CFLAGS) $(OBJ) -o $(EXECUTABLE)
+		@echo "Executable $(GREEN)$(EXECUTABLE)$(RESET) is created."
 
 $(OBJ_DIR):
 		@mkdir -p $(OBJ_DIR)
@@ -76,13 +78,15 @@ clean:
 
 fclean:	clean
 		@$(RM) $(NAME)
+		@$(RM) $(EXECUTABLE)
 		@echo "$(RED)$(NAME)$(RESET) are removed."
+		@echo "$(RED)$(EXECUTABLE)$(RESET) are removed."
 
 re:		fclean all
 
 test:
 		@$(COMMAND_LINUX)
-		@echo "$(BBLUE)./$(NAME)$(RESET)" $(PBPAST)
+		@echo "$(BBLUE)./$(EXECUTABLE)$(RESET)" $(PBPAST)
 		@$(RUN)
 		@echo "$(ORANGE)Number of operations:$(RESET)" `$(RUN) | wc -l`
 		@echo "$(ORANGE)Checker:$(RESET)" `$(RUN) | $(CHECKER)`
@@ -90,7 +94,7 @@ test:
 
 test_mac:
 		@$(COMMAND_MAC)
-		@echo "$(BBLUE)./$(NAME)$(RESET)" $(PBPAST)
+		@echo "$(BBLUE)./$(EXECUTABLE)$(RESET)" $(PBPAST)
 		@$(RUN)
 		@echo "$(ORANGE)Number of operations:$(RESET)" `$(RUN) | wc -l`
 		@echo "$(ORANGE)Checker:$(RESET)" `$(RUN) | $(CHECKER_MAC)`
