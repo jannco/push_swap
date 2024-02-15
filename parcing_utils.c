@@ -26,5 +26,5 @@ void	ft_exit(t_stack **a)
 {
 	ft_miniprintf("Error\n");
 	free_stack(a);
-	exit(0);
+	exit(1);
 }

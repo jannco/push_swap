@@ -14,28 +14,21 @@
 
 int	find_median(t_stack **a)
 {
-	int				*values;
 	int				median;
 	int				i;
 	long long int	sum;
 	t_stack			*tmp;
 
-	i = -1;
+	i = 0;
 	sum = 0;
-	values = (int *)malloc(size_stack(a) * sizeof(int));
-	if (!values)
-		exit(EXIT_FAILURE);
 	tmp = *a;
 	while (tmp)
 	{
-		values[++i] = tmp->value;
+		sum += tmp->value;
 		tmp = tmp->next;
+		i++;
 	}
-	i = -1;
-	while (++i < size_stack(a))
-		sum += values[i];
 	median = sum / i;
-	free(values);
 	return (median);
 }
 

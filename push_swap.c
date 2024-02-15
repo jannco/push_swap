@@ -19,8 +19,13 @@ int	main(int ac, char **av)
 
 	a = NULL;
 	b = NULL;
-	if (ac == 1 || (ac == 2 && !av[1][0]))
+	if (ac == 1)
+		return (0);
+	if (ac == 2 && !av[1][0])
+	{
+		ft_miniprintf("Error\n");
 		return (1);
+	}
 	create_stack(&a, ac, av);
 	if (!sorted(a))
 	{
