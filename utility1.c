@@ -6,23 +6,11 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:10:51 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/23 08:14:58 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:51:12 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	set_pos(t_stack **stak)
-{
-	t_stack	*tmp;
-
-	tmp = *stak;
-	while (tmp)
-	{
-		tmp->position = 0;
-		tmp = tmp->next;
-	}
-}
 
 void	position(t_stack **a, t_stack **b)
 {
@@ -36,8 +24,6 @@ void	position(t_stack **a, t_stack **b)
 	tmp_b->besti = NULL;
 	i = 0;
 	j = 0;
-	set_pos(a);
-	set_pos(b);
 	while (tmp_a)
 	{
 		tmp_a->position = i;

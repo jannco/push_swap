@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:18:06 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/29 18:39:37 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:18:13 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	perform_sort(t_stack **a, t_stack **b);
 int		find_median(t_stack **a);
 void	get_besti(t_stack **a, t_stack **b, int small_high);
 void	position(t_stack **a, t_stack **b);
-void	set_pos(t_stack **stak);
 int		get_small(t_stack **a, t_stack **b);
 void	set_small_besti(t_stack **a, t_stack **b);
 long	lookforsmalest(t_stack **a);

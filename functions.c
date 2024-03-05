@@ -46,6 +46,32 @@ long	size_stack(t_stack **a)
 	return (0);
 }
 
+long	ft_str_to_long(char **str, int *err)
+{
+	long	i;
+	long	num;
+	int		flag;
+
+	i = 0;
+	num = 0;
+	flag = 1;
+	while (str[0][i] == 32 || (str[0][i] >= 9 && str[0][i] <= 13))
+		i++;
+	flag = (str[0][i] != '-') - (str[0][i] == '-');
+	i += (str[0][i] == '+' || str[0][i] == '-');
+	if (!str[0][i])
+		*err = 1;
+	while (str[0][i] >= '0' && str[0][i] <= '9')
+	{
+		num = num * 10 + (str[0][i] - '0');
+		if ((num * flag) > INT_MAX || (num * flag) < INT_MIN)
+			*err = 1;
+		i++;
+	}
+	str[0] += i;
+	return (num * flag);
+}
+
 void	create_stack(t_stack **a, int ac, char **av)
 {
 	t_stack	*node;

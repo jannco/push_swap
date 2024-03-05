@@ -22,7 +22,7 @@ void	organize_a(t_stack **a, long i)
 			i--;
 		}
 	}
-	else if ((size_stack(a) / 2) < i)
+	else
 	{
 		while (i < size_stack(a))
 		{
@@ -42,7 +42,7 @@ void	organize_b(t_stack **b, long i)
 			i--;
 		}
 	}
-	else if ((size_stack(b) / 2) < i)
+	else
 	{
 		while (i < size_stack(b))
 		{

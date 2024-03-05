@@ -6,28 +6,19 @@
 #    By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 19:18:24 by yadereve          #+#    #+#              #
-#    Updated: 2024/02/20 09:00:27 by yadereve         ###   ########.fr        #
+#    Updated: 2024/02/21 19:38:52 by yadereve         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap.a
+NAME = push_swap
 CC = cc
-EXECUTABLE = push_swap
-RM = rm -f
+RM = rm -rf
 CFLAGS = -Wall -Wextra -Werror
-
-# Colors
-GREEN = \033[1;32m
-RED = \033[1;31m
-BBLUE = \033[1;34m
-ORANGE = \033[0;33m
-RESET = \033[0;0m
-
+OBJ_DIR = objects
 SRCS = freestack.c \
 		ft_bzero.c \
 		ft_calloc.c \
 		ft_miniprintf.c \
-		ft_str_to_long.c \
 		functions.c \
 		mini_sort.c \
 		operation_rotate1.c \
@@ -40,55 +31,58 @@ SRCS = freestack.c \
 		perform_sort.c \
 		push_swap.c \
 		rotation.c \
-		utiliti2.c \
 		utility1.c \
-
-OBJ_DIR = objects
+		utility2.c \
 
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 
-# Test
+# Colors
+GREEN = \033[1;32m
+RED = \033[1;31m
+BLUE = \033[1;34m
+ORANGE = \033[0;33m
+RESET = \033[0;0m
+
+# Tests
 BUFF = buff
 PBPAST = $(shell cat $(BUFF))
 NUM = $(if $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS)),$(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS)),5)
 COMMAND_MAC = $(shell jot -r -n $(NUM) -999999 999999 > $(BUFF))
 COMMAND_LINUX = $(shell seq -999999 999999 | shuf -n $(NUM) > $(BUFF))
-RUN = ./$(EXECUTABLE) $(PBPAST)
+RUN = ./$(NAME) $(PBPAST)
 CHECKER = ./checker_linux $(PBPAST)
 CHECKER_MAC = ./checker_mac $(PBPAST)
 
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJ)
-	@ar rcs $@ $(OBJ)
-	@echo "Directory $(GREEN)$(OBJ_DIR)$(RESET) is created"
-	@echo "Library $(GREEN)$@$(RESET) is created."
-	@$(CC) $(CFLAGS) $(OBJ) -o $(EXECUTABLE)
-	@echo "Executable $(GREEN)$(EXECUTABLE)$(RESET) is created."
-	@echo "\n---- Type: % ./push_swap 2 1 3 6 5 8"
-	@echo "---- Type: % make test 500"
-
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@echo "$(BLUE)                    __"
+	@echo ".-----.--.--.-----.|  |--.    .-----.--.--.--.---.-.-----."
+	@echo "|  _  |  |  |__ --||     |    |__ --|  |  |  |  _  |  _  |"
+	@echo "|   __|_____|_____||__|__|____|_____|________|___._|   __|"
+	@echo "|__|                    |______|                   |__|$(RESET)"
+	@echo "\ncreate:\t$(GREEN)$(OBJ_DIR)\n\t$@$(RESET)"
+	@echo "\n  Type:\t% ./push_swap 2 1 3 6 5 8\n\t% make test 500"
 
 $(OBJ_DIR)/%.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 clean:
-	@$(RM) -r $(OBJ_DIR)
-	@echo "$(RED)$(OBJ_DIR)$(RESET) are removed."
+	@$(RM) $(OBJ_DIR)
+	@echo "removed: $(RED)$(OBJ_DIR)$(RESET)"
 
-fclean:	clean
+fclean: clean
 	@$(RM) $(NAME)
-	@$(RM) $(EXECUTABLE)
-	@echo "$(RED)$(NAME)$(RESET) are removed."
-	@echo "$(RED)$(EXECUTABLE)$(RESET) are removed."
+	@echo "\t $(RED)$(NAME)$(RESET)"
 
-re:		fclean all
+re: fclean all
 
 test:
 	@$(COMMAND_LINUX)
-	@echo "$(BBLUE)./$(EXECUTABLE)$(RESET)" $(PBPAST)
+	@echo "$(BLUE)./$(NAME)$(RESET)" $(PBPAST)
 	@$(RUN)
 	@echo "$(ORANGE)Number of operations:$(RESET)" `$(RUN) | wc -l`
 	@echo "$(ORANGE)Checker:$(RESET)" `$(RUN) | $(CHECKER)`
@@ -96,19 +90,16 @@ test:
 
 test_mac:
 	@$(COMMAND_MAC)
-	@echo "$(BBLUE)./$(EXECUTABLE)$(RESET)" $(PBPAST)
+	@echo "$(BLUE)./$(NAME)$(RESET)" $(PBPAST)
 	@$(RUN)
 	@echo "$(ORANGE)Number of operations:$(RESET)" `$(RUN) | wc -l`
 	@echo "$(ORANGE)Checker:$(RESET)" `$(RUN) | $(CHECKER_MAC)`
 	@$(RM) $(BUFF)
 
 test_all:
-	curl https://raw.githubusercontent.com/hu8813/tester_push_swap/main/pstester.py | python3 -
-
-git:
-	git add .
-	git commit -m "done"
-	git push
+	@norminette
+	@echo "\n"
+	@curl https://raw.githubusercontent.com/hu8813/tester_push_swap/main/pstester.py | python3 -
 
 %:
 	@true
