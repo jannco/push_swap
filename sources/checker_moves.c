@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 17:07:32 by yadereve          #+#    #+#             */
-/*   Updated: 2024/03/05 17:20:06 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/03/05 20:15:05 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	check_moves(t_stack **a, t_stack **b)
 	}
 	free(instruct);
 	if (sorted(*a))
-		write(1, "OK\n", 3);
+		ft_miniprintf("OK");
 	else
-		write(1, "KO\n", 3);
+		ft_miniprintf("KO");
 }
