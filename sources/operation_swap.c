@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 18:52:23 by yadereve          #+#    #+#             */
-/*   Updated: 2024/01/23 20:12:28 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:25:50 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	ft_swap(t_stack **stack)
 {
-	long int	tmp;
+	long int	tmp_value;
 
 	if (*stack && (*stack)->next)
 	{
-		tmp = (*stack)->value;
+		tmp_value = (*stack)->value;
 		(*stack)->value = (*stack)->next->value;
-		(*stack)->next->value = tmp;
+		(*stack)->next->value = tmp_value;
 	}
 }
 
