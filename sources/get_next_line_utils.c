@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 19:00:21 by yadereve          #+#    #+#             */
-/*   Updated: 2023/12/10 03:19:21 by yadereve         ###   ########.fr       */
+/*   Updated: 2023/12/09 17:01:02 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_freebuffer(int *flag, char *buffer)
 	}
 }
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
